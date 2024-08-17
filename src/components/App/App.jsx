@@ -5,9 +5,9 @@ import { Route, Routes } from "react-router-dom";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
 import { Toaster } from "react-hot-toast";
-import Layout from "shared/components/Layout/Layout";
-import Loader from "shared/components/Loader/Loader";
-import { selectIsRefreshing } from "redux/users/selectors";
+import Layout from "../../shared/components/Layout/Layout";
+import Loader from "../../shared/components/Loader/Loader";
+import { selectIsRefreshing } from "../../redux/users/selectors";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const ExercisesPage = lazy(() =>

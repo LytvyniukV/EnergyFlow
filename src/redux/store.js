@@ -11,8 +11,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { userReduser } from "./users/slice";
-import { trainingReducer } from "./trainings.js/slice";
-import { waterReducer } from "./water.js/slice";
+import { trainingReducer } from "./trainings/slice";
+import { waterReducer } from "./water/slice";
 
 const authPersistConfig = {
   key: "userSlice",
