@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import "./App.css";
 import { Suspense, lazy, useEffect } from "react";
-import { selectIsRefreshing } from "../../redux/users/selectors";
-import Layout from "../../shared/components/Layout/Layout";
-import Loader from "../../shared/components/Loader/Loader";
 import { Route, Routes } from "react-router-dom";
 import RestrictedRoute from "../RestrictedRoute";
 import PrivateRoute from "../PrivateRoute";
 import { Toaster } from "react-hot-toast";
+import Layout from "shared/components/Layout/Layout";
+import Loader from "shared/components/Loader/Loader";
+import { selectIsRefreshing } from "redux/users/selectors";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const ExercisesPage = lazy(() =>
@@ -17,9 +17,7 @@ const FavoritesPage = lazy(() =>
   import("../../pages/FavoritesPage/FavoritesPage")
 );
 const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage"));
-const TrainingPage = lazy(() =>
-  import("../../pages/TrainingPage/TrainingPage")
-);
+const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -58,10 +56,10 @@ function App() {
             }
           />
           <Route
-            path="/trainings"
+            path="/tracker"
             element={
               <PrivateRoute
-                component={<TrainingPage />}
+                component={<TrackerPage />}
                 redirectTo="/authorization"
               />
             }
