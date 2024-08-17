@@ -1,0 +1,16 @@
+:root {
+  --font-family: "Poppins", sans-serif;
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --main: #323f47;
+  --main-text: #2f2f2f;
+  --main-border: #2f2f2f33;
+  --main-placeholder: #2f2f2f99;
+  --logout-btn: #737476;
+  --shadow: #0000001a;
+  --accent-water: #9be1a0;
+  --accent-hover-water: #87d28d;
+  --background: #f0eff4;
+  --main-white: #fff;
+  --main-gray: #7e847f;
+  --validation-error: #ef5050;
+}
