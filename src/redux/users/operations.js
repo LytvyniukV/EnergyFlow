@@ -12,8 +12,8 @@ export const register = createAsyncThunk(
   "user/register",
   async (userData, thunkAPI) => {
     try {
-      console.log(userData);
       const { data } = await api.post("/auth/register", userData);
+      setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -31,5 +31,50 @@ export const login = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+export const logout = createAsyncThunk("user/logout", async (_, thunkAPI) => {
+  try {
+    const { data } = await api.post("/auth/logout");
+    clearAuthHeader();
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const currentUser = createAsyncThunk(
+  "user/currentUser",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await api.get("/users/current");
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshToken = createAsyncThunk(
+  "user/refreshToken",
+  async (_, thunkAPI) => {
+    const {
+      user: { token },
+    } = thunkAPI.getState();
+    setAuthHeader(token);
+    const { data } = await api.post("/auth/refresh");
+    setAuthHeader(data.accessToken);
+    return data;
+  },
+  {
+    condition: (_, { getState }) => {
+      const {
+        user: { token },
+      } = getState();
+
+      return token !== null;
+    },
   }
 );

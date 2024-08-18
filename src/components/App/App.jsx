@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { Suspense, lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -7,7 +7,8 @@ import PrivateRoute from "../PrivateRoute";
 import { Toaster } from "react-hot-toast";
 import Layout from "../../shared/components/Layout/Layout";
 import Loader from "../../shared/components/Loader/Loader";
-import { selectIsRefreshing } from "../../redux/users/selectors";
+import { selectIsRefreshing, selectUser } from "../../redux/users/selectors";
+import { currentUser, refreshToken } from "../../redux/users/operations";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const ExercisesPage = lazy(() =>
@@ -22,6 +23,15 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  useEffect(() => {
+    dispatch(refreshToken());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch]);
+  console.log(user);
   return isRefreshing ? (
     <Loader />
   ) : (
@@ -50,28 +60,19 @@ function App() {
           <Route
             path="/exercises"
             element={
-              <PrivateRoute
-                component={<ExercisesPage />}
-                redirectTo="/authorization"
-              />
+              <PrivateRoute component={<ExercisesPage />} redirectTo="/login" />
             }
           />
           <Route
             path="/favorites"
             element={
-              <PrivateRoute
-                component={<FavoritesPage />}
-                redirectTo="/authorization"
-              />
+              <PrivateRoute component={<FavoritesPage />} redirectTo="/login" />
             }
           />
           <Route
             path="/tracker"
             element={
-              <PrivateRoute
-                component={<TrackerPage />}
-                redirectTo="/authorization"
-              />
+              <PrivateRoute component={<TrackerPage />} redirectTo="/login" />
             }
           />
         </Routes>
