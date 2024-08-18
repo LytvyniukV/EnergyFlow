@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 10px;
 }
 
 .descriptionWrap {
@@ -77,9 +76,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .wrap {
-    margin-top: 30px;
-  }
   .descriptionWrap {
     padding: 64px;
   }
