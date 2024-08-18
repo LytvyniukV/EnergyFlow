@@ -16,7 +16,8 @@ const ExercisesPage = lazy(() =>
 const FavoritesPage = lazy(() =>
   import("../../pages/FavoritesPage/FavoritesPage")
 );
-const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage"));
+const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
+const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 
 function App() {
@@ -29,10 +30,19 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
-            path="/authorization"
+            path="/login"
             element={
               <RestrictedRoute
-                component={<AuthPage />}
+                component={<SignInPage />}
+                redirectTo="/exercises"
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={<SignUpPage />}
                 redirectTo="/exercises"
               />
             }

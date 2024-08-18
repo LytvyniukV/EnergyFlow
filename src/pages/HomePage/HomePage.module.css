@@ -1,0 +1,139 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.descriptionWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  background-color: var(--light-gray);
+  padding: 30px 16px;
+  border-radius: 30px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: 0.06em;
+  color: var(--main-text);
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.title {
+  font-size: 38px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: var(--main);
+  margin-bottom: 32px;
+}
+
+.navWrap {
+  display: flex;
+  gap: 10px;
+}
+
+.signUp {
+  background: var(--accent-water);
+  border-radius: 30px;
+  padding: 14px 19px;
+  width: 116px;
+  height: 46px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main);
+}
+
+.signIn {
+  border: 1px solid var(--main);
+  border-radius: 30px;
+  padding: 14px 26px;
+  width: 104px;
+  height: 46px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main);
+}
+
+.signUp:hover,
+.signUp:focus {
+  background-color: var(--accent-hover-water);
+}
+
+.signIn:hover,
+.signIn:focus {
+  border-color: var(--accent-hover-water);
+  color: var(--accent-hover-water);
+}
+
+@media screen and (min-width: 768px) {
+  .wrap {
+    margin-top: 30px;
+  }
+  .descriptionWrap {
+    padding: 64px;
+  }
+
+  .description {
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 16px;
+    margin-top: 40px;
+  }
+
+  .title {
+    font-size: 64px;
+    line-height: 109%;
+    margin-bottom: 32px;
+  }
+
+  .navWrap {
+    gap: 16px;
+  }
+
+  .signUp {
+    padding: 18px 40px;
+    width: 169px;
+    height: 60px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .signIn {
+    padding: 18px 40px;
+    width: 169px;
+    height: 60px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrap {
+    flex-direction: row;
+    height: 736px;
+  }
+  .descriptionWrap {
+    width: 672px;
+  }
+  .title {
+    font-size: 80px;
+    line-height: 95%;
+    letter-spacing: -0.01em;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.06em;
+  }
+}

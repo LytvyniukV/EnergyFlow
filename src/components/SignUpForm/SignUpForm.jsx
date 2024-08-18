@@ -1,4 +1,4 @@
-import css from "./SignUpFrom.module.css";
-export default function SignUpFrom() {
+import css from "./SignUpForm.module.css";
+export default function SignUpForm() {
   return <form>Sign up</form>;
 }
