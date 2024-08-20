@@ -12,7 +12,9 @@ export const register = createAsyncThunk(
   "user/register",
   async (userData, thunkAPI) => {
     try {
-      const { data } = await api.post("/auth/register", userData);
+      const {
+        data: { data },
+      } = await api.post("/auth/register", userData);
       setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
@@ -25,7 +27,9 @@ export const login = createAsyncThunk(
   "user/login",
   async (userData, thunkAPI) => {
     try {
-      const { data } = await api.post("/auth/login", userData);
+      const {
+        data: { data },
+      } = await api.post("/auth/login", userData);
       setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
@@ -36,7 +40,13 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk("user/logout", async (_, thunkAPI) => {
   try {
-    const { data } = await api.post("/auth/logout");
+    const {
+      user: { refreshToken },
+    } = thunkAPI.getState();
+
+    const { data } = await api.post("/auth/logout", {
+      headers: { Authorization: `Bearer ${refreshToken}` },
+    });
     clearAuthHeader();
     return data;
   } catch (error) {
@@ -48,7 +58,9 @@ export const currentUser = createAsyncThunk(
   "user/currentUser",
   async (_, thunkAPI) => {
     try {
-      const { data } = await api.get("/users/current");
+      const {
+        data: { data },
+      } = await api.get("/users/current");
 
       return data;
     } catch (error) {
@@ -61,20 +73,23 @@ export const refreshToken = createAsyncThunk(
   "user/refreshToken",
   async (_, thunkAPI) => {
     const {
-      user: { token },
+      user: { refreshToken },
     } = thunkAPI.getState();
-    setAuthHeader(token);
-    const { data } = await api.post("/auth/refresh");
+    setAuthHeader(refreshToken);
+    const {
+      data: { data },
+    } = await api.post("/auth/refresh");
+    console.log(data);
     setAuthHeader(data.accessToken);
     return data;
   },
   {
     condition: (_, { getState }) => {
       const {
-        user: { token },
+        user: { refreshToken },
       } = getState();
 
-      return token !== null;
+      return refreshToken !== null;
     },
   }
 );

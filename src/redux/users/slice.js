@@ -21,7 +21,8 @@ const userSlice = createSlice({
       avatarURL: null,
       favoriteExercises: [],
     },
-    token: null,
+    accessToken: null,
+    refreshToken: null,
     isLoggedIn: false,
     isRefreshing: false,
     isLoading: false,
@@ -33,19 +34,22 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = true;
         state.user.email = action.payload.email;
-        state.token = action.payload.accessToken;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
       })
       .addCase(register.rejected, handleRejected)
       .addCase(login.pending, handlePending)
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.token = action.payload.accessToken;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
       })
       .addCase(login.rejected, handleRejected)
       .addCase(logout.pending, handlePending)
       .addCase(logout.fulfilled, (state, action) => {
-        state.token = null;
+        state.accessToken = null;
+        state.refreshToken = null;
         state.isLoggedIn = false;
         state.user = {
           email: null,
@@ -65,8 +69,11 @@ const userSlice = createSlice({
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isRefreshing = false;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
-        state.token = action.payload.accessToken;
       })
       .addCase(refreshToken.rejected, (state, action) => {
         state.isLoading = false;

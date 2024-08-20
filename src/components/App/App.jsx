@@ -7,8 +7,8 @@ import PrivateRoute from "../PrivateRoute";
 import { Toaster } from "react-hot-toast";
 import Layout from "../../shared/components/Layout/Layout";
 import Loader from "../../shared/components/Loader/Loader";
-import { selectIsRefreshing, selectUser } from "../../redux/users/selectors";
-import { currentUser, refreshToken } from "../../redux/users/operations";
+import { selectIsRefreshing } from "../../redux/users/selectors";
+import { refreshToken } from "../../redux/users/operations";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const ExercisesPage = lazy(() =>
@@ -23,15 +23,13 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
+
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+
   useEffect(() => {
     dispatch(refreshToken());
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(currentUser());
-  }, [dispatch]);
-  console.log(user);
+  }, []);
+
   return isRefreshing ? (
     <Loader />
   ) : (
