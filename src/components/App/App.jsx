@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshToken());
-  }, []);
+  }, [dispatch]);
 
   return isRefreshing ? (
     <Loader />

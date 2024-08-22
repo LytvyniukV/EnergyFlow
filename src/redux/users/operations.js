@@ -43,10 +43,8 @@ export const logout = createAsyncThunk("user/logout", async (_, thunkAPI) => {
     const {
       user: { refreshToken },
     } = thunkAPI.getState();
-
-    const { data } = await api.post("/auth/logout", {
-      headers: { Authorization: `Bearer ${refreshToken}` },
-    });
+    setAuthHeader(refreshToken);
+    const { data } = await api.post("/auth/logout");
     clearAuthHeader();
     return data;
   } catch (error) {
@@ -79,7 +77,6 @@ export const refreshToken = createAsyncThunk(
     const {
       data: { data },
     } = await api.post("/auth/refresh");
-    console.log(data);
     setAuthHeader(data.accessToken);
     return data;
   },

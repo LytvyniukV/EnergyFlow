@@ -14,13 +14,13 @@ import { userReduser } from "./users/slice";
 import { trainingReducer } from "./trainings/slice";
 import { waterReducer } from "./water/slice";
 
-const authPersistConfig = {
-  key: "userSlice",
+const userPersistConfig = {
+  key: "user",
   storage,
-  whitelist: ["token"],
+  whitelist: ["refreshToken"],
 };
 
-const persistedUserReducer = persistReducer(authPersistConfig, userReduser);
+const persistedUserReducer = persistReducer(userPersistConfig, userReduser);
 export const store = configureStore({
   reducer: {
     training: trainingReducer,
