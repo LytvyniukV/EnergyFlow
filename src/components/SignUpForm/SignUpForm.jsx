@@ -8,6 +8,7 @@ import { useState } from "react";
 import Icon from "../../shared/components/Icon/Icon";
 import { useDispatch } from "react-redux";
 import { register as registerUser } from "../../redux/users/operations.js";
+import toast from "react-hot-toast";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit
 const schema = yup.object().shape({
@@ -46,7 +47,10 @@ export default function SignUpForm() {
 
   const onSubmit = (data) => {
     const user = { email: data.email, password: data.password };
-    dispatch(registerUser(user));
+    dispatch(registerUser(user))
+      .unwrap()
+      .then()
+      .catch(() => toast.error("Email is already exist"));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
@@ -136,12 +140,6 @@ export default function SignUpForm() {
       <button className={css.submitBtn} type="submit">
         Sign Up
       </button>
-      <p className={css.text}>
-        Already have account?{" "}
-        <NavLink className={css.link} to="/login">
-          Sign In
-        </NavLink>
-      </p>
     </form>
   );
 }

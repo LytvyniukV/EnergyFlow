@@ -1,0 +1,31 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.descriptionWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  background-color: var(--light-gray);
+  padding: 30px 16px;
+  border-radius: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .descriptionWrap {
+    padding: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .wrap {
+    flex-direction: row;
+    height: 736px;
+  }
+  .descriptionWrap {
+    width: 672px;
+    padding: 64px;
+  }
+}

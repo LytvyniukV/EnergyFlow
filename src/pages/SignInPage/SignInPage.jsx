@@ -1,16 +1,18 @@
 import css from "./SignInPage.module.css";
-import HomeImage from "../../components/HomeImage/HomeImage";
+import PageLayout from "../../shared/components/PageLayout/PageLayout";
 import SignInForm from "../../components/SignInForm/SignInForm";
-import Logo from "../../shared/components/Logo/Logo";
+import { NavLink } from "react-router-dom";
 
 export default function SignInPage() {
   return (
-    <div className={css.mainWrap}>
-      <div className={css.formWrap}>
-        <Logo />
-        <SignInForm />
-      </div>
-      <HomeImage />
-    </div>
+    <PageLayout>
+      <SignInForm />
+      <p className={css.text}>
+        Don't have account?{" "}
+        <NavLink className={css.link} to="/register">
+          Sign Up
+        </NavLink>
+      </p>
+    </PageLayout>
   );
 }

@@ -20,15 +20,20 @@ const FavoritesPage = lazy(() =>
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
-
+const ResetTokenPage = lazy(() =>
+  import("../../pages/ResetTokenPage/ResetTokenPage")
+);
+const ResetPasswordPage = lazy(() =>
+  import("../../pages/ResetPasswordPage/ResetPasswordPage")
+);
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(refreshToken());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshToken());
+  // }, [dispatch]);
 
   return isRefreshing ? (
     <Loader />
@@ -55,6 +60,8 @@ function App() {
               />
             }
           />
+          <Route path="/reset-token" element={<ResetTokenPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route
             path="/exercises"
             element={

@@ -51,23 +51,6 @@
   letter-spacing: -0.01em;
 }
 
-.inputIconWrap {
-  position: relative;
-}
-.iconBtn {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translateY(-50%);
-  border: none;
-  background-color: inherit;
-  outline: transparent;
-}
-.icon {
-  width: 20px;
-  height: 20px;
-}
-
 .submitBtn {
   border-radius: 30px;
   padding: 16px 126px;
@@ -88,22 +71,16 @@
   background-color: var(--accent-hover-water);
 }
 
+.textWrap {
+  text-align: center;
+}
 .text {
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
-  color: rgba(47, 47, 47, 0.5);
-  align-self: flex-end;
-}
-
-.link {
   color: var(--main-text);
 }
 
-.text:hover,
-.text:focus {
-  color: var(--accent-hover-water);
-}
 @media screen and (min-width: 768px) {
   .form {
     margin-top: 40px;
@@ -137,6 +114,7 @@
     line-height: 150%;
   }
   .text {
+    margin-top: 60px;
     font-size: 16px;
     line-height: 150%;
   }

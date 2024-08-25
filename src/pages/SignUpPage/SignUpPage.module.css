@@ -1,31 +1,22 @@
-.mainWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.text {
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.5);
+  margin-top: 20px;
+  text-align: center;
 }
 
-.formWrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  background-color: var(--light-gray);
-  padding: 30px 16px;
-  border-radius: 30px;
-}
-
-@media screen and (min-width: 768px) {
-  .formWrap {
-    padding: 64px;
-  }
+.link {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--main-text);
 }
 
 @media screen and (min-width: 768px) {
-  .mainWrap {
-    flex-direction: row;
-    height: 736px;
-  }
-  .formWrap {
-    width: 672px;
+  .text {
+    font-size: 16px;
+    line-height: 150%;
   }
 }

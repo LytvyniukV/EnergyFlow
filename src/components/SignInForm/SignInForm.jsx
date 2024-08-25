@@ -8,6 +8,7 @@ import { useState } from "react";
 import Icon from "../../shared/components/Icon/Icon";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/users/operations";
+import toast from "react-hot-toast";
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit
@@ -40,7 +41,10 @@ export default function SignInForm() {
   });
 
   const onSubmit = (data) => {
-    dispatch(login(data));
+    dispatch(login(data))
+      .unwrap()
+      .then()
+      .catch(() => toast.error("Email or password is wrong"));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
@@ -91,16 +95,14 @@ export default function SignInForm() {
           )}
         </div>
       </div>
-
+      <p className={css.text}>
+        <NavLink className={css.link} to="/reset-token">
+          Forgot password?
+        </NavLink>
+      </p>
       <button className={css.submitBtn} type="submit">
         Sign In
       </button>
-      <p className={css.text}>
-        Don't have account?{" "}
-        <NavLink className={css.link} to="/register">
-          Sign Up
-        </NavLink>
-      </p>
     </form>
   );
 }
