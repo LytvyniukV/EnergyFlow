@@ -8,6 +8,7 @@ export default function SignUpPage() {
   const [isEmailSent, setIsEmailSent] = useState(false);
   return (
     <PageLayout>
+      <h2 className={css.title}>Sign up</h2>
       {!isEmailSent ? (
         <>
           <SignUpForm isEmailSent={setIsEmailSent} />

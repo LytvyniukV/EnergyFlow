@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 export default function SignInPage() {
   return (
     <PageLayout>
+      <h2 className={css.title}>Login</h2>
       <SignInForm />
       <p className={css.text}>
         Don't have account?{" "}

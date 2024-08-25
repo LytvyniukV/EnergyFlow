@@ -6,7 +6,6 @@ import PageLayout from "../../shared/components/PageLayout/PageLayout";
 export default function HomePage() {
   return (
     <PageLayout>
-      <Logo />
       <p className={css.description}>
         Record daily trainings and water intake and track
       </p>

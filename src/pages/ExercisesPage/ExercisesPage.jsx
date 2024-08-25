@@ -1,4 +1,5 @@
+import PrivatePageLayout from "../../shared/components/PrivatePageLayout/PrivatePageLayout";
 import css from "./ExercisesPage.module.css";
 export default function ExercisesPage() {
-  return <>Exercises Page</>;
+  return <PrivatePageLayout>exercises</PrivatePageLayout>;
 }
