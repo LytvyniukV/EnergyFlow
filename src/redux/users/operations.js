@@ -30,10 +30,11 @@ export const login = createAsyncThunk(
       const {
         data: { data },
       } = await api.post("/auth/login", userData);
+
       setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

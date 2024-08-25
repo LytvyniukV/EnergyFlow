@@ -6,10 +6,10 @@ import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Icon from "../../shared/components/Icon/Icon";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/users/operations";
 import toast from "react-hot-toast";
-
+import { selectUser } from "../../redux/users/selectors.js";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit
 const schema = yup.object().shape({
@@ -25,6 +25,7 @@ const schema = yup.object().shape({
     .required("Password is required"),
 });
 export default function SignInForm() {
+  const user = useSelector(selectUser);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const dispatch = useDispatch();
   const {
@@ -34,7 +35,7 @@ export default function SignInForm() {
   } = useForm({
     mode: "onBlur",
     defaultValues: {
-      email: "",
+      email: user.email || "",
       password: "",
     },
     resolver: yupResolver(schema),
@@ -43,8 +44,14 @@ export default function SignInForm() {
   const onSubmit = (data) => {
     dispatch(login(data))
       .unwrap()
-      .then()
-      .catch(() => toast.error("Email or password is wrong"));
+      .then(setIsEmailSent(true))
+      .catch((error) => {
+        if (error.message === "Please, verify your email") {
+          toast.error(error.message);
+        } else {
+          toast.error("Email or password is wrong");
+        }
+      });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>

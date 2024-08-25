@@ -28,8 +28,9 @@ const schema = yup.object().shape({
     .required("Required"),
 });
 
-export default function SignUpForm() {
+export default function SignUpForm({ isEmailSent }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+
   const dispatch = useDispatch();
   const {
     register,
@@ -49,7 +50,7 @@ export default function SignUpForm() {
     const user = { email: data.email, password: data.password };
     dispatch(registerUser(user))
       .unwrap()
-      .then()
+      .then(isEmailSent(true))
       .catch(() => toast.error("Email is already exist"));
   };
   return (
