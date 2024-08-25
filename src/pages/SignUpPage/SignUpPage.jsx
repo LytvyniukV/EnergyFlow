@@ -23,7 +23,7 @@ export default function SignUpPage() {
           <p className={css.textEmail}>
             Please, check your email and follow the instructions
           </p>
-          <NavLink to="/login" className={css.btn}>
+          <NavLink to="/register" className={css.btn}>
             OK
           </NavLink>
         </div>

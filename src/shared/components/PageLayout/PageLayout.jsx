@@ -5,7 +5,7 @@ export default function PageLayout({ children }) {
   return (
     <div className={css.wrap}>
       <div className={css.descriptionWrap}>
-        <Logo />
+        <Logo redirect="/" />
         {children}
       </div>
       <HomeImage />

@@ -50,7 +50,7 @@ export default function SignUpForm({ isEmailSent }) {
     const user = { email: data.email, password: data.password };
     dispatch(registerUser(user))
       .unwrap()
-      .then(isEmailSent(true))
+      .then(() => isEmailSent(true))
       .catch(() => toast.error("Email is already exist"));
   };
   return (

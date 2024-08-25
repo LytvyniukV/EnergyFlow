@@ -32,6 +32,7 @@ const userSlice = createSlice({
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isLoggedIn = true;
         state.user.email = action.payload.email;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;

@@ -31,9 +31,9 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(refreshToken());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshToken());
+  }, [dispatch]);
 
   return isRefreshing ? (
     <Loader />
@@ -51,15 +51,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                component={<SignUpPage />}
-                redirectTo="/exercises"
-              />
-            }
-          />
+          <Route path="/register" element={<SignUpPage />} />
           <Route path="/reset-token" element={<ResetTokenPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route
