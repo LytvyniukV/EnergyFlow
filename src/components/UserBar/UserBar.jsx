@@ -6,8 +6,13 @@ import clsx from "clsx";
 import { RxAvatar } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/users/selectors.js";
+import UserBarPopover from "../UserBarPopover/UserBarPopover.jsx";
 
-export default function UserBar() {
+export default function UserBar({
+  isLogoutModal,
+  isAccountSettingsModal,
+  isWaterSettingsModal,
+}) {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const user = useSelector(selectUser);
 
@@ -16,7 +21,14 @@ export default function UserBar() {
       isOpen={isPopoverOpen}
       positions={["bottom"]}
       onClickOutside={() => setIsPopoverOpen(!isPopoverOpen)}
-      content={<>Popover</>}
+      content={
+        <UserBarPopover
+          closePopover={setIsPopoverOpen}
+          isAccountSettingsModal={isAccountSettingsModal}
+          isLogoutModal={isLogoutModal}
+          isWaterSettingsModal={isWaterSettingsModal}
+        />
+      }
       containerClassName={css.popover}
     >
       <button

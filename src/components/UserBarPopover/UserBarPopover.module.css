@@ -1,0 +1,61 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: var(--main-white);
+  border-radius: 15px;
+  padding: 14px 57px 14px 20px;
+}
+
+.btn {
+  background-color: inherit;
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--main);
+  transition: all var(--transition);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  stroke: var(--main);
+  transition: all var(--transition);
+}
+
+.logout {
+  color: rgba(50, 63, 71, 0.4);
+  transition: all var(--transition);
+}
+
+.logoutIcon {
+  stroke: rgba(50, 63, 71, 0.4);
+  transition: all var(--transition);
+}
+
+.btn:hover,
+.btn:focus {
+  color: var(--accent-hover-water);
+}
+
+.btn:hover .icon,
+.btn:focus .icon {
+  stroke: var(--accent-hover-water);
+}
+
+.logout:hover,
+.logout:focus {
+  color: var(--main);
+}
+
+.logout:hover .logoutIcon,
+.logout:focus .logoutIcon {
+  stroke: var(--main);
+}

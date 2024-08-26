@@ -1,26 +1,40 @@
 import css from "./UserBarPopover.module.css";
 import Icon from "../../shared/components/Icon/Icon";
-export default function UserBarPopover({ closePopover }) {
+import clsx from "clsx";
+export default function UserBarPopover({
+  closePopover,
+  isLogoutModal,
+  isAccountSettingsModal,
+  isWaterSettingsModal,
+}) {
+  const openAccountSettingsModal = () => {
+    isAccountSettingsModal(true);
+    closePopover(false);
+  };
+  const openLogoutModal = () => {
+    isLogoutModal(true);
+    closePopover(false);
+  };
+  const openWaterSettingsModal = () => {
+    isWaterSettingsModal(true);
+    closePopover(false);
+  };
   return (
-    <ul className={css.list}>
-      <li className={css.item}>
-        <button className={css.btn}>
-          <Icon className={css.icon} id="settings" />
-          Account settings
-        </button>
-      </li>
-      <li className={css.item}>
-        <button className={css.btn}>
-          <Icon className={css.icon} id="settings" />
-          Water Settings
-        </button>
-      </li>
-      <li className={css.item}>
-        <button className={css.btn}>
-          <Icon className={css.icon} id="logOut" />
-          Log out
-        </button>
-      </li>
-    </ul>
+    <div className={css.list}>
+      <button className={css.btn} onClick={openAccountSettingsModal}>
+        <Icon className={css.icon} id="settings" />
+        Account settings
+      </button>
+
+      <button className={css.btn} onClick={openWaterSettingsModal}>
+        <Icon className={css.icon} id="settings" />
+        Water Settings
+      </button>
+
+      <button className={clsx(css.btn, css.logout)} onClick={openLogoutModal}>
+        <Icon className={clsx(css.icon, css.logoutIcon)} id="logOut" />
+        Log out
+      </button>
+    </div>
   );
 }

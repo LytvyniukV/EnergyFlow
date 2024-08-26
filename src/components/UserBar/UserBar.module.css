@@ -8,6 +8,7 @@
   gap: 8px;
   background-color: var(--main-gray);
   border: none;
+  margin-left: auto;
 }
 
 .name {

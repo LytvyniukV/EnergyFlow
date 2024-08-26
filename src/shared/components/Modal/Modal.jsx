@@ -1,12 +1,13 @@
 import ReactModal from "react-modal";
 import css from "./Modal.module.css";
+import { createPortal } from "react-dom";
 ReactModal.setAppElement("body");
 
 export default function Modal({ children, isModal, onClose }) {
   const closeModal = () => {
     onClose(false);
   };
-  return (
+  return createPortal(
     <ReactModal
       isOpen={isModal}
       onRequestClose={closeModal}
@@ -15,6 +16,7 @@ export default function Modal({ children, isModal, onClose }) {
       overlayClassName={css.Overlay}
     >
       {children}
-    </ReactModal>
+    </ReactModal>,
+    document.body
   );
 }

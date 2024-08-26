@@ -3,3 +3,14 @@
   align-items: center;
   margin-bottom: 20px;
 }
+.burgerMenu {
+  background-color: inherit;
+  border: none;
+  line-height: 0;
+  margin-left: 30px;
+}
+@media screen and (min-width: 768px) {
+  .burgerMenu {
+    display: none;
+  }
+}
