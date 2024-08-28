@@ -1,0 +1,128 @@
+.section {
+  margin-bottom: 20px;
+}
+.background {
+  background-image: url(/public/images/advice/advice1x-mobile.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 335px;
+  height: 270px;
+  border-radius: 30px;
+}
+
+.advice {
+  border-radius: 30px;
+  background-color: var(--main-logo);
+  padding: 40px 16px;
+  display: flex;
+  gap: 20px;
+}
+
+.iconWrap {
+  border-radius: 100%;
+  background-color: rgba(246, 246, 246, 0.1);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  fill: var(--main-text-white);
+  transition: all var(--transition);
+  animation: rotate 2.5s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 245px;
+  text-align: left;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.time {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  color: var(--main-text-white);
+}
+
+.text {
+  font-size: 14px;
+  line-height: 129%;
+  color: rgba(246, 246, 246, 0.6);
+}
+
+@media screen and (min-resolution: 192dpi) and (max-width: 767px),
+  screen and (min-resolution: 2dppx) and (max-width: 767px),
+  screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+  .background {
+    background-image: url("../../../public/images/advice/advice2x-mobile.png");
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+    background-image: url(/public/images/advice/advice1x-tablet.png);
+    width: 736px;
+    height: 302px;
+  }
+
+  .advice {
+    padding: 60px;
+  }
+
+  .description {
+    max-width: 526px;
+  }
+
+  .time {
+    font-size: 24px;
+    line-height: 133%;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 768px),
+    screen and (min-resolution: 2dppx) and (max-width: 767px),
+    screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+    .background {
+      background-image: url("../../../public/images/advice/advice2x-tablet.png");
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    display: flex;
+  }
+  .background {
+    background-image: url(/public/images/advice/advice1x-desktop.png);
+    width: 704px;
+    height: 302px;
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 1440px),
+    screen and (min-resolution: 2dppx) and (max-width: 767px),
+    screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+    .background {
+      background-image: url("../../../public/images/advice/advice2x-destop.png");
+    }
+  }
+}
