@@ -1,0 +1,45 @@
+.list {
+  display: flex;
+  gap: 6px;
+}
+
+.btn {
+  border-radius: 30px;
+  padding: 7px 14px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--main-logo);
+  border: none;
+  transition: all var(--transition);
+}
+.item {
+  border-radius: 30px;
+}
+.active {
+  background-color: var(--main-gray);
+  color: var(--main-text-white);
+}
+.btn:hover {
+  border: 1px solid var(--main-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    gap: 8px;
+  }
+
+  .btn {
+    border-radius: 30px;
+    padding: 10px 20px;
+    height: 44px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+  }
+}

@@ -1,0 +1,35 @@
+.item {
+  border: 1px solid rgba(246, 246, 246, 0.3);
+  border-radius: 12px;
+  width: 295px;
+  height: 232px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.name {
+  font-size: 20px;
+  line-height: 100%;
+  text-align: center;
+  color: var(--main-text-white);
+}
+
+.filter {
+  font-size: 12px;
+  line-height: 150%;
+  color: rgba(246, 246, 246, 0.4);
+}
+
+@media screen and (min-width: 768px) {
+  .item {
+    width: 313px;
+    height: 250px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+}
