@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   gap: 2px;
+  cursor: pointer;
 }
 
 .name {
@@ -15,12 +16,14 @@
   line-height: 100%;
   text-align: center;
   color: var(--main-text-white);
+  text-transform: capitalize;
 }
 
 .filter {
   font-size: 12px;
   line-height: 150%;
   color: rgba(246, 246, 246, 0.4);
+  text-transform: capitalize;
 }
 
 @media screen and (min-width: 768px) {

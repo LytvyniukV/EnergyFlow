@@ -1,12 +1,13 @@
 import clsx from "clsx";
 import css from "./ButtonsList.module.css";
 import { useState } from "react";
-export default function ButtonsList({ onClick }) {
+export default function ButtonsList({ onClick, clearExercises }) {
   const [activeBtn, setActiveBtn] = useState("Muscles");
 
   const handleClick = (value) => {
     onClick(value);
     setActiveBtn(value);
+    clearExercises([]);
   };
   return (
     <ul className={css.list}>
