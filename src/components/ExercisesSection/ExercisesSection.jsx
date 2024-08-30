@@ -9,9 +9,11 @@ import FiltersList from "../FiltersList/FiltersList.jsx";
 export default function ExercisesSection() {
   const [filter, setFilter] = useState("Muscles");
   const [filters, setFilters] = useState([]);
-  const [bodyPart, setBodyPart] = useState("");
-  const [equipment, setEquipment] = useState("");
-  const [muscles, setMuscles] = useState("");
+  const [exerciseFilter, setexerciseFilter] = useState({
+    bodyPart: "",
+    equipment: "",
+    muscles: "",
+  });
   const [isExerciseFilter, setIsExerciseFilter] = useState(false);
   const [exercises, setExercises] = useState([]);
   const [page, setPage] = useState(1);
@@ -30,12 +32,13 @@ export default function ExercisesSection() {
   useEffect(() => {
     const getExercises = async () => {
       const { data } = await api.get(
-        `/exercises?bodyParts=${bodyPart}&muscles=${muscles}&equipment=${equipment}&page=${page}&perPage=12`
+        `/exercises?bodyParts=${exerciseFilter.bodyPart}&muscles=${exerciseFilter.muscles}&equipment=${exerciseFilter.equipment}&page=${page}&perPage=12`
       );
       setExercises(data.data);
+      setFilters([]);
     };
     if (isExerciseFilter) getExercises();
-  }, [bodyPart, equipment, muscles, isExerciseFilter]);
+  }, [exerciseFilter, isExerciseFilter]);
   return (
     <section className={css.section}>
       <h3 className={css.title}>Exercises</h3>
@@ -49,11 +52,8 @@ export default function ExercisesSection() {
       ) : (
         <FiltersList
           filters={filters}
-          setBodyPart={setBodyPart}
-          setEquipment={setEquipment}
-          setMuscles={setMuscles}
           isExercise={setIsExerciseFilter}
-          setFilter={setFilters}
+          setExerciseFilter={setexerciseFilter}
         />
       )}
     </section>

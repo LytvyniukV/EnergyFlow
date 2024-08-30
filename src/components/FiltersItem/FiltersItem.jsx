@@ -1,34 +1,31 @@
 import css from "./FiltersItem.module.css";
-export default function FiltersItem({
-  item,
-  setMuscles,
-  setEquipment,
-  setBodyPart,
-  isExercise,
-  setFilter,
-}) {
+export default function FiltersItem({ item, isExercise, setExerciseFilter }) {
   const handleClick = (value) => {
     switch (item.filter) {
       case "Muscles":
-        setMuscles(value);
-        setBodyPart("");
-        setEquipment("");
         isExercise(true);
-        setFilter([]);
+        setExerciseFilter({
+          bodyPart: "",
+          equipment: "",
+          muscles: value,
+        });
         break;
       case "Body parts":
-        setBodyPart(value);
-        setEquipment("");
-        setMuscles("");
         isExercise(true);
-        setFilter([]);
+        setExerciseFilter({
+          bodyPart: value,
+          equipment: "",
+          muscles: "",
+        });
         break;
       case "Equipment":
-        setEquipment(value);
-        setBodyPart("");
-        setMuscles("");
         isExercise(true);
-        setFilter([]);
+        setExerciseFilter({
+          bodyPart: "",
+          equipment: value,
+          muscles: "",
+        });
+        break;
     }
   };
   return (

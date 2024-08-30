@@ -2,11 +2,8 @@ import FiltersItem from "../FiltersItem/FiltersItem";
 import css from "./FiltersList.module.css";
 export default function FiltersList({
   filters,
-  setBodyPart,
-  setEquipment,
-  setMuscles,
   isExercise,
-  setFilter,
+  setExerciseFilter,
 }) {
   return (
     <ul className={css.list}>
@@ -14,12 +11,9 @@ export default function FiltersList({
         return (
           <FiltersItem
             key={item._id}
-            setBodyPart={setBodyPart}
-            setEquipment={setEquipment}
-            setMuscles={setMuscles}
             item={item}
             isExercise={isExercise}
-            setFilter={setFilter}
+            setExerciseFilter={setExerciseFilter}
           />
         );
       })}
