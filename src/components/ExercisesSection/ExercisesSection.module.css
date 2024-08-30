@@ -14,11 +14,30 @@
   text-align: left;
   margin-bottom: 20px;
 }
+.bodyPart {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: rgba(27, 27, 27, 0.5);
+  text-transform: capitalize;
+}
 .filtersWrap {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-bottom: 40px;
+}
+.notFound {
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-logo);
+}
+.accent {
+  font-weight: 500;
+  color: var(--main-gray);
 }
 @media screen and (min-width: 768px) {
   .section {
@@ -29,11 +48,19 @@
     font-size: 44px;
     line-height: 109%;
   }
+  .bodyPart {
+    font-size: 24px;
+    line-height: 133%;
+  }
   .filtersWrap {
     flex-direction: row;
     gap: 35px;
     margin-bottom: 50px;
     align-items: center;
+  }
+  .notFound {
+    font-size: 18px;
+    line-height: 133%;
   }
 }
 

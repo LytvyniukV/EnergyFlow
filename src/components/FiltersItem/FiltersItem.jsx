@@ -1,36 +1,27 @@
 import css from "./FiltersItem.module.css";
 export default function FiltersItem({ item, isExercise, setExerciseFilter }) {
-  const handleClick = (value) => {
+  const parseFilterName = () => {
     switch (item.filter) {
       case "Muscles":
-        isExercise(true);
-        setExerciseFilter({
-          bodyPart: "",
-          equipment: "",
-          muscles: value,
-        });
-        break;
+        return "muscles";
       case "Body parts":
-        isExercise(true);
-        setExerciseFilter({
-          bodyPart: value,
-          equipment: "",
-          muscles: "",
-        });
-        break;
+        return "bodyParts";
       case "Equipment":
-        isExercise(true);
-        setExerciseFilter({
-          bodyPart: "",
-          equipment: value,
-          muscles: "",
-        });
-        break;
+        return "equipment";
     }
+  };
+
+  const handleClick = () => {
+    const filter = parseFilterName();
+    setExerciseFilter({
+      [filter]: item.name,
+    });
+
+    isExercise(true);
   };
   return (
     <li
-      onClick={() => handleClick(item.name)}
+      onClick={handleClick}
       className={css.item}
       style={{
         background: ` linear-gradient(

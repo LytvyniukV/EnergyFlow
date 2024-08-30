@@ -5,56 +5,78 @@ import css from "./ExercisesSection.module.css";
 import api from "../../axiosApi/axios.js";
 import { useState } from "react";
 import FiltersList from "../FiltersList/FiltersList.jsx";
+import ExercisesList from "../ExercisesList/ExercisesList.jsx";
 
 export default function ExercisesSection() {
   const [filter, setFilter] = useState("Muscles");
   const [filters, setFilters] = useState([]);
-  const [exerciseFilter, setexerciseFilter] = useState({
-    bodyPart: "",
-    equipment: "",
-    muscles: "",
-  });
+  const [exerciseFilter, setexerciseFilter] = useState({});
   const [isExerciseFilter, setIsExerciseFilter] = useState(false);
   const [exercises, setExercises] = useState([]);
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState("");
+  const filterName = Object.keys(exerciseFilter)[0];
 
   useEffect(() => {
+    const filtersParams = new URLSearchParams({
+      filter: filter,
+      perPage: 12,
+      page: page,
+    });
     const getFilters = async () => {
-      const { data } = await api.get(
-        `/filters?filter=${filter}&perPage=12&page=${page}`
-      );
+      const { data } = await api.get(`/filters?${filtersParams}`);
       setFilters(data.data);
+      setIsExerciseFilter(false);
     };
 
     getFilters();
-  }, [filter]);
+  }, [filter, page]);
 
   useEffect(() => {
+    const exercisesParams = new URLSearchParams({
+      [filterName]: exerciseFilter[filterName],
+      perPage: 12,
+      page: page,
+      q: query,
+    });
     const getExercises = async () => {
-      const { data } = await api.get(
-        `/exercises?bodyParts=${exerciseFilter.bodyPart}&muscles=${exerciseFilter.muscles}&equipment=${exerciseFilter.equipment}&page=${page}&perPage=12`
-      );
+      const { data } = await api.get(`/exercises?${exercisesParams}`);
       setExercises(data.data);
       setFilters([]);
     };
-    if (isExerciseFilter) getExercises();
-  }, [exerciseFilter, isExerciseFilter]);
+    if (!isExerciseFilter) return;
+    getExercises();
+  }, [isExerciseFilter, filterName, exerciseFilter, page, query]);
   return (
     <section className={css.section}>
-      <h3 className={css.title}>Exercises</h3>
+      <h3 className={css.title}>
+        Exercises{" "}
+        {isExerciseFilter && (
+          <>
+            /<span className={css.bodyPart}> {exerciseFilter[filterName]}</span>
+          </>
+        )}
+      </h3>
       <div className={css.filtersWrap}>
-        <ButtonsList onClick={setFilter} clearExercises={setExercises} />
-        <SearchForm />
+        <ButtonsList onClick={setFilter} />
+        <SearchForm onSubmit={setQuery} />
       </div>
 
-      {exercises.length !== 0 ? (
-        <p>exercises</p>
-      ) : (
+      {filters.length > 0 ? (
         <FiltersList
           filters={filters}
           isExercise={setIsExerciseFilter}
           setExerciseFilter={setexerciseFilter}
         />
+      ) : exercises.length > 0 ? (
+        <ExercisesList exercises={exercises} />
+      ) : (
+        <p className={css.notFound}>
+          Unfortunately, <span className={css.accent}>no results</span> were
+          found. You may want to consider other search options to find the
+          exercise you are looking for. Our range is wide and you have the
+          opportunity to find more options that suit your needs.
+        </p>
       )}
     </section>
   );

@@ -1,15 +1,22 @@
+import Icon from "../../shared/components/Icon/Icon";
 import css from "./SearchForm.module.css";
-export default function SearchForm() {
-  const onChange = (e) => {};
+export default function SearchForm({ onSubmit }) {
+  const handleChange = (e) => {
+    onSubmit(e.target.value);
+  };
   return (
-    <form>
+    <form className={css.wrap}>
       <input
+        onChange={handleChange}
         className={css.input}
         type="text"
-        onChange={onChange}
         name="query"
         autoComplete="off"
+        placeholder="Search"
       />
+      <button type="submit" className={css.btn}>
+        <Icon id="icon-search" width={18} height={18} className={css.icon} />
+      </button>
     </form>
   );
 }

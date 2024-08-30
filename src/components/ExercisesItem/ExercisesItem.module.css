@@ -1,0 +1,132 @@
+.item {
+  border-radius: 15px;
+  background-color: var(--main-white);
+  padding: 16px;
+  width: 295px;
+}
+
+.topWrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.workout {
+  border-radius: 15px;
+  padding: 5px 8px;
+  width: 76px;
+  height: 26px;
+  background: var(--main-gray);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--main-text-white);
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.rateWrap {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.rate {
+  font-size: 12px;
+  line-height: 150%;
+  color: var(--main-logo);
+}
+.icon {
+  fill: #eea10c;
+}
+
+.start {
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--main-logo);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  background-color: inherit;
+  border: none;
+}
+
+.iconArrow {
+  stroke: var(--main-logo);
+}
+.mainWrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.iconWrap {
+  background-color: var(--main-gray);
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconMan {
+  fill: var(--main-white);
+}
+.name {
+  font-size: 20px;
+  line-height: 100%;
+  color: var(--main-logo);
+  text-align: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.descriptionWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
+.text {
+  font-size: 12px;
+  line-height: 150%;
+  color: var(--main-logo);
+  text-transform: capitalize;
+}
+.accent {
+  color: rgba(27, 27, 27, 0.4);
+  text-transform: none;
+}
+
+@media screen and (min-width: 768px) {
+  .item {
+    width: 313px;
+  }
+  .topWrap {
+    margin-bottom: 25px;
+  }
+
+  .start {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .name {
+    font-size: 24px;
+    line-height: 133%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .item {
+    width: 424px;
+  }
+  .descriptionWrap {
+    gap: 14px;
+    flex-wrap: nowrap;
+  }
+}

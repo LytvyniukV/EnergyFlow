@@ -1,0 +1,47 @@
+.wrap {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  border-radius: 30px;
+  padding: 12px 23px 12px 14px;
+  width: 295px;
+  height: 42px;
+  background-color: var(--main-text-white);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--main-logo);
+  border: none;
+  outline: transparent;
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: inherit;
+  border: none;
+  line-height: 0;
+}
+.icon {
+  stroke: var(--main-logo);
+  fill: none;
+}
+
+@media screen and (min-width: 768px) {
+  .input {
+    width: 246px;
+    height: 48px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .input {
+    width: 274px;
+    margin-left: auto;
+  }
+}
