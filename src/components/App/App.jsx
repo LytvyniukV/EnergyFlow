@@ -51,7 +51,15 @@ function App() {
               />
             }
           />
-          <Route path="/register" element={<SignUpPage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={<SignUpPage />}
+                redirectTo="/exercises"
+              />
+            }
+          />
           <Route path="/reset-token" element={<ResetTokenPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route

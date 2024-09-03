@@ -44,7 +44,7 @@ export default function SignInForm() {
   const onSubmit = (data) => {
     dispatch(login(data))
       .unwrap()
-      .then(setIsEmailSent(true))
+      .then()
       .catch((error) => {
         if (error.message === "Please, verify your email") {
           toast.error(error.message);

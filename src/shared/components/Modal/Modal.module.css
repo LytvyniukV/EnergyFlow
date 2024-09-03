@@ -14,3 +14,28 @@
   left: 0;
   transition: all cubic-bezier(0.895, 0.03, 0.685, 0.22);
 }
+
+.modal {
+  position: relative;
+}
+
+.closeBtn {
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: inherit;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.icon {
+  stroke: var(--main-logo);
+  transition: all var(--transition);
+}
+
+.closeBtn:hover .icon {
+  stroke: var(--main-gray);
+}

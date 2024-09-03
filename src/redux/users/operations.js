@@ -91,3 +91,17 @@ export const refreshToken = createAsyncThunk(
     },
   }
 );
+
+export const toggleFavorites = createAsyncThunk(
+  "user/toggleFavorites",
+  async (id, thunkAPI) => {
+    try {
+      const {
+        data: { data },
+      } = await api.patch(`/users/favorites/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

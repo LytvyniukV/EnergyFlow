@@ -7,6 +7,7 @@ import { useState } from "react";
 import FiltersList from "../FiltersList/FiltersList.jsx";
 import ExercisesList from "../ExercisesList/ExercisesList.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
+import ExerciseModal from "../ExerciseModal/ExerciseModal.jsx";
 
 export default function ExercisesSection() {
   const [filter, setFilter] = useState("Muscles");
@@ -17,8 +18,12 @@ export default function ExercisesSection() {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [totalPages, setTotalPages] = useState(0);
+  const [isExerciseModal, setIsExerciseModal] = useState(false);
+  const [exerciseItem, setExerciseItem] = useState("");
   const filterName = Object.keys(exerciseFilter)[0];
-  console.log(page);
+  console.log(isExerciseModal);
+  console.log(exerciseItem);
+
   useEffect(() => {
     const filtersParams = new URLSearchParams({
       filter: filter,
@@ -76,7 +81,11 @@ export default function ExercisesSection() {
           setExerciseFilter={setexerciseFilter}
         />
       ) : exercises.length > 0 ? (
-        <ExercisesList exercises={exercises} />
+        <ExercisesList
+          exercises={exercises}
+          setExerciseItem={setExerciseItem}
+          openExerciseModal={setIsExerciseModal}
+        />
       ) : (
         <p className={css.notFound}>
           Unfortunately, <span className={css.accent}>no results</span> were
@@ -86,6 +95,11 @@ export default function ExercisesSection() {
         </p>
       )}
       <Pagination setPage={setPage} totalPages={totalPages} page={page} />
+      <ExerciseModal
+        isModal={isExerciseModal}
+        closeModal={setIsExerciseModal}
+        item={exerciseItem}
+      />
     </section>
   );
 }

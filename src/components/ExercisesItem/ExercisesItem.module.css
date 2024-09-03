@@ -102,6 +102,26 @@
   text-transform: none;
 }
 
+.favoriteBtn {
+  line-height: 0;
+  background-color: inherit;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconHeart {
+  height: 30px;
+  width: 30px;
+  stroke: var(--main-logo);
+  fill: none;
+}
+
+.favorite {
+  fill: red;
+  stroke: none;
+}
 @media screen and (min-width: 768px) {
   .item {
     width: 313px;

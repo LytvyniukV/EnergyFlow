@@ -5,6 +5,7 @@ import {
   logout,
   refreshToken,
   register,
+  toggleFavorites,
 } from "./operations";
 import { handlePending, handleRejected } from "../../utils/handleStatusRequest";
 
@@ -32,10 +33,7 @@ const userSlice = createSlice({
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isLoggedIn = true;
         state.user.email = action.payload.email;
-        state.accessToken = action.payload.accessToken;
-        state.refreshToken = action.payload.refreshToken;
       })
       .addCase(register.rejected, handleRejected)
       .addCase(login.pending, handlePending)
@@ -85,7 +83,13 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
         state.user = action.payload;
       })
-      .addCase(currentUser.rejected, handleRejected),
+      .addCase(currentUser.rejected, handleRejected)
+      .addCase(toggleFavorites.pending, handlePending)
+      .addCase(toggleFavorites.fulfilled, (state, action) => {
+        (state.isLoading = false),
+          (state.user.favoriteExercises = action.payload);
+      })
+      .addCase(toggleFavorites.rejected, handleRejected),
 });
 
 export const userReduser = userSlice.reducer;
