@@ -4,6 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   transition: all ease-in-out 0.6s;
+  min-width: 100%;
 }
 .Overlay {
   position: fixed;
@@ -17,6 +18,9 @@
 
 .modal {
   position: relative;
+  background-color: var(--main-text-white);
+  border-radius: 20px;
+  padding: 40px 20px;
 }
 
 .closeBtn {
@@ -38,4 +42,13 @@
 
 .closeBtn:hover .icon {
   stroke: var(--main-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .Modal {
+    min-width: 0;
+  }
+  .modal {
+    padding: 40px;
+  }
 }

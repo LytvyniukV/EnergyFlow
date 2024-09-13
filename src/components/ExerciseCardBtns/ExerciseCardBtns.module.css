@@ -1,0 +1,71 @@
+.btnsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: center;
+  min-width: 100%;
+}
+
+.btn {
+  width: 100%;
+  height: 42px;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  border: 1px solid var(--main-logo);
+  display: flex;
+  color: var(--main-logo);
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: inherit;
+  transition: all var(--transition);
+}
+
+.btn:hover,
+.btn:focus {
+  color: var(--main-gray);
+  border-color: var(--main-gray);
+}
+
+.btn:hover .icon,
+.btn:focus .icon {
+  fill: var(--main-gray);
+}
+
+.favoritesBtn {
+  background-color: var(--main-gray);
+  border: none;
+  color: var(--main-text-white);
+}
+
+.favoritesBtn:hover,
+.favoritesBtn:focus {
+  background-color: #5f6560;
+  color: var(--main-text-white);
+}
+.iconHeart {
+  fill: none;
+  stroke: var(--main-text-white);
+}
+
+.iconTrash {
+  fill: none;
+  stroke: var(--main-text-white);
+}
+
+@media screen and (min-width: 768px) {
+  .btnsWrap {
+    flex-direction: row;
+    gap: 10px;
+    align-self: center;
+    min-width: none;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    height: 48px;
+  }
+}

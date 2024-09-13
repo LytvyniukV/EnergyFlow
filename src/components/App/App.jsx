@@ -26,6 +26,9 @@ const ResetTokenPage = lazy(() =>
 const ResetPasswordPage = lazy(() =>
   import("../../pages/ResetPasswordPage/ResetPasswordPage")
 );
+const ExerciseCardPage = lazy(() =>
+  import("../../pages/ExerciseCardPage/ExerciseCardPage")
+);
 function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -66,6 +69,15 @@ function App() {
             path="/exercises"
             element={
               <PrivateRoute component={<ExercisesPage />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/exercises/:id"
+            element={
+              <PrivateRoute
+                component={<ExerciseCardPage />}
+                redirectTo="/login"
+              />
             }
           />
           <Route

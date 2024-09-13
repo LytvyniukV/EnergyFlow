@@ -1,0 +1,37 @@
+.info {
+  display: flex;
+  padding: 10px 0;
+  border-top: 1px solid rgba(27, 27, 27, 0.2);
+  border-bottom: 1px solid rgba(27, 27, 27, 0.2);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.infoWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoName {
+  font-size: 12px;
+  line-height: 150%;
+  color: rgba(27, 27, 27, 0.4);
+}
+
+.infoValue {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--main-logo);
+}
+
+.infoValue::first-letter {
+  text-transform: capitalize;
+}
+
+@media screen and (min-width: 768px) {
+  .info {
+    gap: 16px;
+  }
+}
