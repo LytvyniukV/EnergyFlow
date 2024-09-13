@@ -13,6 +13,7 @@ import storage from "redux-persist/lib/storage";
 import { userReduser } from "./users/slice";
 import { trainingReducer } from "./trainings/slice";
 import { waterReducer } from "./water/slice";
+import { exercisesReduser } from "./exercises/slice";
 
 const userPersistConfig = {
   key: "user",
@@ -26,6 +27,7 @@ export const store = configureStore({
     training: trainingReducer,
     water: waterReducer,
     user: persistedUserReducer,
+    exercises: exercisesReduser,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

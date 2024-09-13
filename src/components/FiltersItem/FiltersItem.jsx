@@ -1,5 +1,12 @@
+import { useDispatch } from "react-redux";
 import css from "./FiltersItem.module.css";
-export default function FiltersItem({ item, isExercise, setExerciseFilter }) {
+import {
+  changeExerciseFilter,
+  changeIsExerciseSearching,
+} from "../../redux/exercises/slice";
+export default function FiltersItem({ item }) {
+  const dispatch = useDispatch();
+
   const parseFilterName = () => {
     switch (item.filter) {
       case "Muscles":
@@ -13,11 +20,12 @@ export default function FiltersItem({ item, isExercise, setExerciseFilter }) {
 
   const handleClick = () => {
     const filter = parseFilterName();
-    setExerciseFilter({
-      [filter]: item.name,
-    });
-
-    isExercise(true);
+    dispatch(
+      changeExerciseFilter({
+        [filter]: item.name,
+      })
+    );
+    dispatch(changeIsExerciseSearching(true));
   };
   return (
     <li

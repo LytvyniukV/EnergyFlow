@@ -1,12 +1,11 @@
 import { Fade } from "react-awesome-reveal";
 import ExercisesItem from "../ExercisesItem/ExercisesItem";
 import css from "./ExercisesList.module.css";
+import { useSelector } from "react-redux";
+import { selectExercises } from "../../redux/exercises/selectors";
 
-export default function ExercisesList({
-  exercises,
-  setExerciseItem,
-  openExerciseModal,
-}) {
+export default function ExercisesList({ setExerciseItem, openExerciseModal }) {
+  const exercises = useSelector(selectExercises);
   return (
     <ul className={css.list}>
       {exercises.map((item, ind) => {

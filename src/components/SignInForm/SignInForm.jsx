@@ -9,7 +9,11 @@ import Icon from "../../shared/components/Icon/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/users/operations";
 import toast from "react-hot-toast";
-import { selectUser } from "../../redux/users/selectors.js";
+import {
+  selectUser,
+  selectUserIsLoading,
+} from "../../redux/users/selectors.js";
+import DotLoader from "../../shared/components/DotLoader/DotLoader.jsx";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit
 const schema = yup.object().shape({
@@ -26,6 +30,7 @@ const schema = yup.object().shape({
 });
 export default function SignInForm() {
   const user = useSelector(selectUser);
+  const isLoading = useSelector(selectUserIsLoading);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const dispatch = useDispatch();
   const {
@@ -108,7 +113,7 @@ export default function SignInForm() {
         </NavLink>
       </p>
       <button className={css.submitBtn} type="submit">
-        Sign In
+        {isLoading ? <DotLoader text="Signing in" /> : "Sign in"}
       </button>
     </form>
   );

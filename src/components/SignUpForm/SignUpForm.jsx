@@ -6,9 +6,11 @@ import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Icon from "../../shared/components/Icon/Icon";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register as registerUser } from "../../redux/users/operations.js";
 import toast from "react-hot-toast";
+import { selectUserIsLoading } from "../../redux/users/selectors.js";
+import DotLoader from "../../shared/components/DotLoader/DotLoader.jsx";
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit
 const schema = yup.object().shape({
@@ -30,7 +32,7 @@ const schema = yup.object().shape({
 
 export default function SignUpForm({ isEmailSent }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-
+  const isLoading = useSelector(selectUserIsLoading);
   const dispatch = useDispatch();
   const {
     register,
@@ -139,7 +141,7 @@ export default function SignUpForm({ isEmailSent }) {
       </div>
 
       <button className={css.submitBtn} type="submit">
-        Sign Up
+        {isLoading ? <DotLoader text="Signing up" /> : "Sign up"}
       </button>
     </form>
   );

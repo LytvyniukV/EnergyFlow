@@ -1,14 +1,19 @@
 import clsx from "clsx";
 import css from "./ButtonsList.module.css";
 import { useState } from "react";
-export default function ButtonsList({ onClick, setIsExerciseSearch, setPage }) {
+import { useDispatch } from "react-redux";
+import {
+  changeFilterName,
+  changeIsExerciseSearching,
+} from "../../redux/exercises/slice";
+export default function ButtonsList({ setPage }) {
   const [activeBtn, setActiveBtn] = useState("Muscles");
-
+  const dispatch = useDispatch();
   const handleClick = (value) => {
     setPage(1);
-    onClick(value);
+    dispatch(changeFilterName(value));
     setActiveBtn(value);
-    setIsExerciseSearch(false);
+    dispatch(changeIsExerciseSearching(false));
   };
   return (
     <ul className={css.list}>

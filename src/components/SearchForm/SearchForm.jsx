@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Icon from "../../shared/components/Icon/Icon";
 import css from "./SearchForm.module.css";
-export default function SearchForm({ onSubmit }) {
+import { useDispatch } from "react-redux";
+import { changeQuery } from "../../redux/exercises/slice";
+export default function SearchForm() {
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(e.target.children.query.value);
+    dispatch(changeQuery(e.target.children.query.value));
   };
 
   const handleChange = (e) => {

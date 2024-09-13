@@ -8,21 +8,31 @@ import FiltersList from "../FiltersList/FiltersList.jsx";
 import ExercisesList from "../ExercisesList/ExercisesList.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
 import ExerciseModal from "../ExerciseModal/ExerciseModal.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectExerciseFilter,
+  selectExercises,
+  selectFilterName,
+  selectFilters,
+  selectIsExerciseSearching,
+  selectQuery,
+  selectTotalPages,
+} from "../../redux/exercises/selectors.js";
+import { getExercises, getFilters } from "../../redux/exercises/operations.js";
 
 export default function ExercisesSection() {
-  const [filter, setFilter] = useState("Muscles");
-  const [filters, setFilters] = useState([]);
-  const [exerciseFilter, setexerciseFilter] = useState({});
-  const [isExerciseFilter, setIsExerciseFilter] = useState(false);
-  const [exercises, setExercises] = useState([]);
+  const dispatch = useDispatch();
+  const filter = useSelector(selectFilterName);
+  const filters = useSelector(selectFilters);
+  const exercises = useSelector(selectExercises);
+  const query = useSelector(selectQuery);
+  const exerciseFilter = useSelector(selectExerciseFilter);
+  const isExerciseSearch = useSelector(selectIsExerciseSearching);
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [totalPages, setTotalPages] = useState(0);
+  const totalPages = useSelector(selectTotalPages);
   const [isExerciseModal, setIsExerciseModal] = useState(false);
   const [exerciseItem, setExerciseItem] = useState("");
   const filterName = Object.keys(exerciseFilter)[0];
-  console.log(isExerciseModal);
-  console.log(exerciseItem);
 
   useEffect(() => {
     const filtersParams = new URLSearchParams({
@@ -30,15 +40,9 @@ export default function ExercisesSection() {
       perPage: 12,
       page: page,
     });
-    const getFilters = async () => {
-      const { data } = await api.get(`/filters?${filtersParams}`);
-      setFilters(data.data);
-      setQuery("");
-      setTotalPages(data.totalPages);
-    };
 
-    if (!isExerciseFilter) getFilters();
-  }, [filter, page, isExerciseFilter]);
+    if (!isExerciseSearch) dispatch(getFilters(filtersParams));
+  }, [filter, page, isExerciseSearch, dispatch]);
 
   useEffect(() => {
     const exercisesParams = new URLSearchParams({
@@ -47,39 +51,26 @@ export default function ExercisesSection() {
       page: page,
       q: query,
     });
-    const getExercises = async () => {
-      const { data } = await api.get(`/exercises?${exercisesParams}`);
-      setExercises(data.data);
-      setFilters([]);
-      setTotalPages(data.totalPages);
-    };
-    if (isExerciseFilter) getExercises();
-  }, [isExerciseFilter, filterName, exerciseFilter, page, query]);
+
+    if (isExerciseSearch) dispatch(getExercises(exercisesParams));
+  }, [isExerciseSearch, filterName, exerciseFilter, page, query, dispatch]);
   return (
     <section className={css.section}>
       <h3 className={css.title}>
         Exercises{" "}
-        {isExerciseFilter && (
+        {isExerciseSearch && (
           <>
             /<span className={css.bodyPart}> {exerciseFilter[filterName]}</span>
           </>
         )}
       </h3>
       <div className={css.filtersWrap}>
-        <ButtonsList
-          onClick={setFilter}
-          setIsExerciseSearch={setIsExerciseFilter}
-          setPage={setPage}
-        />
-        {isExerciseFilter && <SearchForm onSubmit={setQuery} />}
+        <ButtonsList setPage={setPage} />
+        {isExerciseSearch && <SearchForm />}
       </div>
 
       {filters.length > 0 ? (
-        <FiltersList
-          filters={filters}
-          isExercise={setIsExerciseFilter}
-          setExerciseFilter={setexerciseFilter}
-        />
+        <FiltersList />
       ) : exercises.length > 0 ? (
         <ExercisesList
           exercises={exercises}
