@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ButtonsList from "../ButtonsList/ButtonsList";
 import SearchForm from "../SearchForm/SearchForm";
 import css from "./ExercisesSection.module.css";
-import api from "../../axiosApi/axios.js";
+import Loader from "../../shared/components/Loader/Loader.jsx";
 import { useState } from "react";
 import FiltersList from "../FiltersList/FiltersList.jsx";
 import ExercisesList from "../ExercisesList/ExercisesList.jsx";
@@ -17,11 +17,13 @@ import {
   selectIsExerciseSearching,
   selectQuery,
   selectTotalPages,
+  isExerciseLoading,
 } from "../../redux/exercises/selectors.js";
 import { getExercises, getFilters } from "../../redux/exercises/operations.js";
 
 export default function ExercisesSection() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(isExerciseLoading);
   const filter = useSelector(selectFilterName);
   const filters = useSelector(selectFilters);
   const exercises = useSelector(selectExercises);
@@ -91,6 +93,7 @@ export default function ExercisesSection() {
         closeModal={setIsExerciseModal}
         item={exerciseItem}
       />
+      {isLoading && <Loader />}
     </section>
   );
 }

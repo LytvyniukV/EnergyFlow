@@ -6,3 +6,4 @@ export const selectTotalPages = (state) => state.exercises.totalPages;
 export const selectExerciseFilter = (state) => state.exercises.exercises.filter;
 export const selectIsExerciseSearching = (state) =>
   state.exercises.isExerciseSearching;
+export const isExerciseLoading = (state) => state.exercises.isLoading;
