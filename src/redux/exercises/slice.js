@@ -27,6 +27,7 @@ const exercisesSlice = createSlice({
       popularity: 0,
       reviews: 0,
     },
+    reviews: [],
     isLoading: false,
     totalPages: 0,
     isExerciseSearching: false,

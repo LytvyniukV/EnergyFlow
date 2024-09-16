@@ -27,20 +27,26 @@ export default function GiveRatingForm({ isRating, isExerciseCard }) {
   };
   const onSubmit = (data) => {
     console.log({ rating: rating, comment: data.comment });
-    console.log(rating);
+  };
+
+  const cancelRating = () => {
+    isRating(false);
+    isExerciseCard(true);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <span>{rating}</span>
+    <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      <p className={css.title}>Rating</p>
+      <div className={css.rateWrap}>
+        <span className={css.rate}>{rating.toFixed(1)}</span>
         <Rating
           onClick={handleRating}
           initialValue={rating}
           transition
           allowFraction
+          size={24}
         />
       </div>
-      <div>
+      <div className={css.commentWrap}>
         <textarea
           placeholder="Your comment"
           {...register("comment")}
@@ -50,16 +56,18 @@ export default function GiveRatingForm({ isRating, isExerciseCard }) {
           <p className={css.error}>{errors.comment.message}</p>
         )}
       </div>
-      <button type="submit">send</button>
-      <button
-        type="button"
-        onClick={() => {
-          isRating(false);
-          isExerciseCard(true);
-        }}
-      >
-        cancel
-      </button>
+      <div className={css.btnWrap}>
+        <button type="submit" className={clsx(css.btn, css.sendBtn)}>
+          Send
+        </button>
+        <button
+          type="button"
+          onClick={cancelRating}
+          className={clsx(css.btn, css.cancelBtn)}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }

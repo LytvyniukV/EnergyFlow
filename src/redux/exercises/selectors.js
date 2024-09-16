@@ -8,3 +8,4 @@ export const selectIsExerciseSearching = (state) =>
   state.exercises.isExerciseSearching;
 export const isExerciseLoading = (state) => state.exercises.isLoading;
 export const selectExerciseItem = (state) => state.exercises.currentExercise;
+export const selectReviews = (state) => state.exercises.reviews;
