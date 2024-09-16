@@ -7,3 +7,4 @@ export const selectExerciseFilter = (state) => state.exercises.exercises.filter;
 export const selectIsExerciseSearching = (state) =>
   state.exercises.isExerciseSearching;
 export const isExerciseLoading = (state) => state.exercises.isLoading;
+export const selectExerciseItem = (state) => state.exercises.currentExercise;

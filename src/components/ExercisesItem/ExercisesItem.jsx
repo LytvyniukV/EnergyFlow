@@ -4,12 +4,9 @@ import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/users/selectors.js";
 import { toggleFavorites } from "../../redux/users/operations.js";
+import { setExerciseCard } from "../../redux/exercises/slice.js";
 
-export default function ExercisesItem({
-  item,
-  openExerciseModal,
-  setExerciseItem,
-}) {
+export default function ExercisesItem({ item, openExerciseModal }) {
   const user = useSelector(selectUser);
   const favorites = user.favoriteExercises;
   const dispatch = useDispatch();
@@ -19,7 +16,7 @@ export default function ExercisesItem({
     dispatch(toggleFavorites(item._id));
   };
   const openModal = () => {
-    setExerciseItem(item);
+    dispatch(setExerciseCard(item));
     openExerciseModal(true);
   };
   return (

@@ -14,6 +14,19 @@ const exercisesSlice = createSlice({
       query: "",
       docs: [],
     },
+    currentExercise: {
+      bodyPart: "",
+      equipment: "",
+      gifUrl: "",
+      name: "",
+      target: "",
+      description: "",
+      rating: 0,
+      burnedCalories: 0,
+      time: 0,
+      popularity: 0,
+      reviews: 0,
+    },
     isLoading: false,
     totalPages: 0,
     isExerciseSearching: false,
@@ -30,6 +43,9 @@ const exercisesSlice = createSlice({
     },
     changeIsExerciseSearching(state, action) {
       state.isExerciseSearching = action.payload;
+    },
+    setExerciseCard(state, action) {
+      state.currentExercise = action.payload;
     },
   },
   extraReducers: (builder) =>
@@ -58,5 +74,6 @@ export const {
   changeQuery,
   changeExerciseFilter,
   changeIsExerciseSearching,
+  setExerciseCard,
 } = exercisesSlice.actions;
 export const exercisesReduser = exercisesSlice.reducer;

@@ -4,16 +4,37 @@
   gap: 20px;
 }
 
+.notFound {
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-logo);
+  margin: auto;
+  margin-top: 200px;
+  max-width: 295px;
+  min-height: 100%;
+}
 @media screen and (min-width: 768px) {
   .list {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px 15px;
   }
+  .notFound {
+    font-size: 18px;
+    line-height: 133%;
+    max-width: 536px;
+    margin-top: 300px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .list {
     gap: 30px 20px;
+  }
+  .notFound {
+    max-width: 684px;
+    margin-top: 200px;
   }
 }

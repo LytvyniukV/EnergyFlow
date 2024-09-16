@@ -33,7 +33,6 @@ export default function ExercisesSection() {
   const [page, setPage] = useState(1);
   const totalPages = useSelector(selectTotalPages);
   const [isExerciseModal, setIsExerciseModal] = useState(false);
-  const [exerciseItem, setExerciseItem] = useState("");
   const filterName = Object.keys(exerciseFilter)[0];
 
   useEffect(() => {
@@ -73,25 +72,16 @@ export default function ExercisesSection() {
 
       {filters.length > 0 ? (
         <FiltersList />
-      ) : exercises.length > 0 ? (
+      ) : (
         <ExercisesList
           exercises={exercises}
-          setExerciseItem={setExerciseItem}
           openExerciseModal={setIsExerciseModal}
         />
-      ) : (
-        <p className={css.notFound}>
-          Unfortunately, <span className={css.accent}>no results</span> were
-          found. You may want to consider other search options to find the
-          exercise you are looking for. Our range is wide and you have the
-          opportunity to find more options that suit your needs.
-        </p>
       )}
       <Pagination setPage={setPage} totalPages={totalPages} page={page} />
       <ExerciseModal
         isModal={isExerciseModal}
         closeModal={setIsExerciseModal}
-        item={exerciseItem}
       />
       {isLoading && <Loader />}
     </section>

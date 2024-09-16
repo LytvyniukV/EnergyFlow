@@ -30,18 +30,6 @@
   margin-bottom: 40px;
 }
 
-.notFound {
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: var(--main-logo);
-  margin: auto;
-  margin-top: 200px;
-  max-width: 295px;
-  min-height: 100%;
-}
-
 .accent {
   font-weight: 500;
   color: var(--main-gray);
@@ -66,12 +54,6 @@
     margin-bottom: 50px;
     align-items: center;
   }
-  .notFound {
-    font-size: 18px;
-    line-height: 133%;
-    max-width: 536px;
-    margin-top: 300px;
-  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -84,10 +66,5 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 30px;
-  }
-
-  .notFound {
-    max-width: 684px;
-    margin-top: 200px;
   }
 }

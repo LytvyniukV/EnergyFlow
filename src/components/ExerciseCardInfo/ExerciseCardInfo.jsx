@@ -1,5 +1,8 @@
+import { useSelector } from "react-redux";
 import css from "./ExerciseCardInfo.module.css";
-export default function ExerciseCardInfo({ item }) {
+import { selectExerciseItem } from "../../redux/exercises/selectors";
+export default function ExerciseCardInfo() {
+  const item = useSelector(selectExerciseItem);
   return (
     <div className={css.info}>
       <div className={css.infoWrap}>
