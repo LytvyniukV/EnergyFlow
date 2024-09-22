@@ -1,0 +1,63 @@
+.mainWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timeWrap {
+  font-size: 120px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn {
+  border: none;
+  background-color: inherit;
+  color: var(--main-logo);
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  font-size: 20px;
+  line-height: 150%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all var(--transition);
+}
+
+.start {
+  background-color: green;
+  color: var(--main-text-white);
+}
+
+.start:hover,
+.start:focus {
+  background-color: lightgreen;
+  color: var(--main-logo);
+}
+.pause {
+  background-color: orange;
+}
+
+.pause:hover,
+.pause:focus {
+  background-color: yellow;
+}
+.stop {
+  background-color: red;
+}
+.stop:hover,
+.stop:focus {
+  background-color: rgb(240, 117, 117);
+}

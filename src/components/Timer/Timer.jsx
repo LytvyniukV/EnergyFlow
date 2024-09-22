@@ -1,7 +1,9 @@
 import clsx from "clsx";
 import css from "./Timer.module.css";
 import { useTimer } from "react-timer-hook";
+import { useState } from "react";
 export default function Timer({ expiryTimestamp, setSeconds }) {
+  const [isDisabled, setIsDisabled] = useState(false);
   const {
     totalSeconds,
     seconds,
@@ -19,6 +21,7 @@ export default function Timer({ expiryTimestamp, setSeconds }) {
   const onStopClick = () => {
     pause();
     setSeconds(3 * 60 - totalSeconds);
+    setIsDisabled(false);
   };
   const onRestartClick = () => {
     const time = new Date();
@@ -32,33 +35,24 @@ export default function Timer({ expiryTimestamp, setSeconds }) {
         <span className={css.time}>{`${seconds}`.padEnd(2, "0")}</span>
       </div>
 
-      <button
-        onClick={start}
-        disabled={isRunning && true}
-        className={clsx(css.btn, css.start)}
-      >
-        Start
-      </button>
-      <button
-        onClick={pause}
-        disabled={!isRunning && true}
-        className={clsx(css.btn, css.pause)}
-      >
-        Pause
-      </button>
-      <button
-        onClick={resume}
-        disabled={isRunning && true}
-        className={clsx(css.btn, css.resume)}
-      >
-        Resume
-      </button>
-      <button onClick={onRestartClick} className={clsx(css.btn, css.restart)}>
-        Restart
-      </button>
-      <button className={clsx(css.btn, css.stop)} onClick={onStopClick}>
-        Stop
-      </button>
+      <div className={css.btnsWrap}>
+        <button
+          onClick={() => {
+            start();
+            setIsDisabled(true);
+          }}
+          disabled={isDisabled && true}
+          className={clsx(css.btn, css.start)}
+        >
+          Start
+        </button>
+        <button onClick={onRestartClick} className={clsx(css.btn, css.pause)}>
+          Restart
+        </button>
+        <button className={clsx(css.btn, css.stop)} onClick={onStopClick}>
+          Stop
+        </button>
+      </div>
     </div>
   );
 }
