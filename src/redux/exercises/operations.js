@@ -24,3 +24,20 @@ export const getExercises = createAsyncThunk(
     }
   }
 );
+
+export const leaveReview = createAsyncThunk(
+  "exercises/leaweReview",
+  async (review, thunkAPI) => {
+    try {
+      const {
+        data: { data },
+      } = await api.post(`/exercises/reviews/${review.id}`, {
+        rating: review.rating,
+        comment: review.comment,
+      });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

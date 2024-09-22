@@ -5,11 +5,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Rating } from "react-simple-star-rating";
 import { useState } from "react";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectExerciseItem } from "../../redux/exercises/selectors";
+import { leaveReview } from "../../redux/exercises/operations";
+import toast from "react-hot-toast";
 
 const schema = yup.object().shape({
   comment: yup.string().required("Comment is required"),
 });
 export default function GiveRatingForm({ isRating, isExerciseCard }) {
+  const exercise = useSelector(selectExerciseItem);
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const {
     register,
@@ -25,14 +31,21 @@ export default function GiveRatingForm({ isRating, isExerciseCard }) {
   const handleRating = (rate) => {
     setRating(rate);
   };
-  const onSubmit = (data) => {
-    console.log({ rating: rating, comment: data.comment });
-  };
-
   const cancelRating = () => {
     isRating(false);
     isExerciseCard(true);
   };
+  const onSubmit = (data) => {
+    dispatch(
+      leaveReview({ rating: rating, comment: data.comment, id: exercise._id })
+    )
+      .unwrap()
+      .then(() => {
+        toast.success("Thank you for your review");
+        cancelRating();
+      });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
       <p className={css.title}>Rating</p>

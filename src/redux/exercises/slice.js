@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { handlePending, handleRejected } from "../../utils/handleStatusRequest";
-import { getExercises, getFilters } from "./operations";
+import { getExercises, getFilters, leaveReview } from "./operations";
 
 const exercisesSlice = createSlice({
   name: "exercises",
@@ -67,7 +67,14 @@ const exercisesSlice = createSlice({
         state.exercises.docs = action.payload.data;
         state.totalPages = action.payload.totalPages;
       })
-      .addCase(getExercises.rejected, handleRejected),
+      .addCase(getExercises.rejected, handleRejected)
+      .addCase(leaveReview.pending, handlePending)
+      .addCase(leaveReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentExercise = action.payload.exercise;
+        state.reviews = action.payload.reviews;
+      })
+      .addCase(leaveReview.rejected, handleRejected),
 });
 
 export const {

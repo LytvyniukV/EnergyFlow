@@ -21,7 +21,7 @@ export default function ExerciseCardDetails({
       <div className={css.exercise}>
         <h3 className={css.name}>{item.name}</h3>
         <div className={css.rating}>
-          {item.rating}{" "}
+          {item.rating.toFixed(1)}{" "}
           <Rating initialValue={item.rating} readonly size={18} allowFraction />
           <Link className={css.link} to={`/exercises/${item._id}`}>
             Reviews ({item.reviews})
